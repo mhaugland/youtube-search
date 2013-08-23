@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>YouTube Search</title>
+		<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+		<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-theme.min.css">
+		<link rel="stylesheet" href="app.css" />
+	</head>
+
+	<body>
+		<div id="wrap">
+			<div class="_app _page container _results-container">
+				<ul class="nav nav-tabs _nav">
+					<li class="active"><a class="_navLink" href="#home">Home</a></li>
+				</ul>
+				<div class="tab-content _tabs">
+					<div id="home" class="tab-pane active">
+						<header>
+							<h1>Add a new saved search</h1>
+							<div class="search-form">
+								<form class="form-horizontal" role="form">
+									<div class="form-group">
+										<label for="searchTitle" class="col-lg-2 control-label">Search title</label>
+										<div class="col-lg-4">
+											<input id="searchTitle" class="_searchTitle form-control" type="text" placeholder="Your title here...">
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label for="searchKeywords" class="col-lg-2 control-label">Keywords</label>
+										<div class="col-lg-4">
+											<input id="searchKeywords" class="_searchKeywords form-control" type="text" placeholder="IE: canucks hockey">
+										</div>
+									</div>
+
+									<!--<div class="form-group">
+										<div class="col-lg-offset-2 col-lg-10">
+											<div class="checkbox">
+												<label>
+													<input class="_searchRefresh" type="checkbox"> Auto refresh
+												</label>
+											</div>
+										</div>
+									</div>-->
+									<div class="form-group">
+										<div class="col-lg-offset-2 col-lg-10">
+											<button class="_saveSearch btn btn-default">Save</button>
+										</div>
+									</div>
+								</form>
+							</div>
+						</header>
+						<section class="_main">
+							<h3>Saved Searches</h3>
+							<div class="row">
+								<div class="col-md-6">
+									<ul class="_search-list list-group"></ul>
+								</div>
+							</div>
+						</section>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div id="footer">
+			<div class="container">
+				<p class="text-muted credit">Created by Mike Haugland</p>
+			</div>
+		</div>
+
+		<!-- scripts -->
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js"></script>
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.0.0/backbone-min.js"></script>
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/backbone-localstorage.js/1.1.0/backbone.localStorage-min.js"></script>
+		<script src="https://apis.google.com/js/client.js?onload=handleClientLoad"></script>
+		<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+
+		<!-- app -->
+		<script src="app.js"></script>
+
+		<!-- templates -->
+		<script type="text/template" id="search-item">
+			<div class="saved-search row">
+				<div class="col-md-9">
+					<a href="#" class="_goToSearch"><%- title %> (Keywords: <%- keywords %>)</a>
+				</div>
+				<div class="col-md-3">
+					<button class="_delete btn btn-danger">Delete</button>
+				</div>
+			</div>
+		</script>
+
+		<script type="text/template" id="search-results">
+			<h3>Search Results for: <%- title %></h3>
+			<div class="_result-list"></div>
+		</script>
+
+		<script type="text/template" id="nav-item">
+			<a class="_navLink" href="#result<%- id %>">Saved search: <%- title %></a>
+		</script>
+
+		<script type="text/template" id="search-result">
+			<div class="thumbnail">
+				<img src="<%- thumbnail %>">
+				<div class="caption">
+					<h3><%- count %>: <%- title %></h3>
+					<p class="description"><%- description %></p>
+					<button class="_viewOnYouTube btn btn-default">View it on YouTube</button>
+				</div>
+			</div>
+		</script>
+	</body>
+</html>
